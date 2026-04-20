@@ -1,0 +1,27 @@
+model:
+  path: "yolov8s-world.pt"
+  conf_threshold: 0.25
+
+video:
+  path: "E:\\yolo-video-analytics\\sample\\286879_tiny.mp4"
+
+# Initial vocabulary — will be switched mid-stream in experiments
+vocabulary:
+  initial: ["person", "car", "bicycle", "motorcycle", "bus", "truck"]
+
+# Transition script — frame index where vocab switches happen
+# transition_type: synonym | hypernym_expand | hyponym_narrow | sibling_swap | disjoint
+transitions:
+  - frame: 30
+    vocab: ["pedestrian", "car", "bicycle", "motorcycle", "bus", "truck"]
+    transition_type: "synonym"
+  - frame: 60
+    vocab: ["vehicle", "person"]
+    transition_type: "hypernym_expand"
+  - frame: 90
+    vocab: ["airplane", "dog", "cat"]
+    transition_type: "disjoint"
+
+logging:
+  output_dir: "outputs"
+  log_file: "outputs/run_log.jsonl"

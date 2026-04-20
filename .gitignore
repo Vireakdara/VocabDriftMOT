@@ -1,0 +1,32 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Model weights
+*.pt
+*.onnx
+*.engine
+*.trt
+
+# Outputs and logs
+outputs/
+*.jsonl
+
+# Data
+data/
+
+# CLIP local install
+CLIP-main/
+CLIP-main.zip
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
