@@ -18,10 +18,11 @@ def run_sequence(
     sequence_dir: str,
     initial_vocab: list,
     transition_types: list,
+    repeats: int = 3,
     model_path: str = "yolov8s-world.pt",
     conf_threshold: float = 0.25,
     output_dir: str = "outputs",
-    visualize: bool = True,
+    visualize: bool = False,
 ) -> dict:
 
     Path(output_dir).mkdir(exist_ok=True)
@@ -35,6 +36,7 @@ def run_sequence(
         total_frames=sequence.total_frames,
         initial_vocab=initial_vocab,
         transition_type_sequence=transition_types,
+        repeats=repeats,
     )
 
     # Save transition schedule
@@ -212,7 +214,11 @@ def main():
 
     sequences = [
         "E:\\Dataset\\MOT17\\train\\MOT17-02-FRCNN",
+        "E:\\Dataset\\MOT17\\train\\MOT17-04-FRCNN",
+        "E:\\Dataset\\MOT17\\train\\MOT17-05-FRCNN",
         "E:\\Dataset\\MOT17\\train\\MOT17-09-FRCNN",
+        "E:\\Dataset\\MOT17\\train\\MOT17-10-FRCNN",
+        "E:\\Dataset\\MOT17\\train\\MOT17-11-FRCNN",
         "E:\\Dataset\\MOT17\\train\\MOT17-13-FRCNN",
     ]
 

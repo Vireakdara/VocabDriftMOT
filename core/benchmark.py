@@ -94,6 +94,7 @@ class TransitionSchedule:
         total_frames: int,
         initial_vocab: List[str],
         transition_type_sequence: List[str],
+        repeats: int = 3,
     ) -> "TransitionSchedule":
         vocab_map = {
             "synonym": ["pedestrian", "car", "bicycle"],
@@ -103,14 +104,22 @@ class TransitionSchedule:
             "disjoint": ["airplane", "dog", "cat"],
         }
 
-        n = len(transition_type_sequence)
-        start = int(total_frames * 0.2)
-        spacing = int((total_frames * 0.7) / max(n, 1))
+        # Build full sequence with repeats
+        # e.g. repeats=3 means synonym,hypernym,hyponym,sibling,disjoint x3
+        full_sequence = transition_type_sequence * repeats
+        n = len(full_sequence)
+
+        # Space transitions evenly across 80% of sequence
+        start = int(total_frames * 0.05)
+        spacing = int((total_frames * 0.90) / max(n, 1))
 
         transitions = []
-        for i, t_type in enumerate(transition_type_sequence):
+        for i, t_type in enumerate(full_sequence):
+            frame = start + i * spacing
+            if frame >= total_frames:
+                break
             transitions.append({
-                "frame": start + i * spacing,
+                "frame": frame,
                 "vocab": vocab_map[t_type],
                 "transition_type": t_type,
             })
