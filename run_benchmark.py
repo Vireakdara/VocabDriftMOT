@@ -211,7 +211,9 @@ def main():
     config = load_config()
 
     sequences = [
+        "E:\\Dataset\\MOT17\\train\\MOT17-02-FRCNN",
         "E:\\Dataset\\MOT17\\train\\MOT17-09-FRCNN",
+        "E:\\Dataset\\MOT17\\train\\MOT17-13-FRCNN",
     ]
 
     initial_vocab = ["person", "car", "bicycle", "motorcycle", "bus", "truck"]
