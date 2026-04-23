@@ -217,7 +217,13 @@ def main():
     ]
 
     initial_vocab = ["person", "car", "bicycle", "motorcycle", "bus", "truck"]
-    transition_types = ["synonym", "hypernym_expand", "disjoint"]
+    transition_types = [
+        "synonym",
+        "hypernym_expand",
+        "hyponym_narrow",
+        "sibling_swap",
+        "disjoint",
+    ]
 
     all_results = []
     for seq_dir in sequences:
