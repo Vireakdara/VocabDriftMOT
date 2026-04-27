@@ -5,7 +5,9 @@
 Every existing OV-MOT benchmark fixes the vocabulary per sequence. But in real deployments — warehouse monitoring, autonomous driving, surveillance — users change the text prompt mid-stream. This project is the first to measure what breaks when they do, and how consistently it breaks.
 
 ---
+![IDF1-AT by Transition Type](idf1at_comparison.png)
 
+![IDF1-AT Heatmap per Sequence](idf1at_heatmap.png)
 ## Key Finding
 
 **Switching "person" → "pedestrian" causes near-complete tracking failure. Switching "car" → "vehicle" preserves most tracks. Both are valid vocabulary changes. The difference is 40× in IDF1-AT.**
