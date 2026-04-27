@@ -7,7 +7,8 @@ from pathlib import Path
 from core.detector import YOLOWorldDetector
 from core.benchmark import MOTSequence, TransitionSchedule
 from core.evaluator import IDFTracker, ScoreJitterTracker
-
+import os
+os.environ["QT_QPA_PLATFORM"] = "offscreen"
 
 def load_config(path: str = "configs/base.yaml") -> dict:
     with open(path, "r") as f:
@@ -18,7 +19,7 @@ def run_sequence(
     sequence_dir: str,
     initial_vocab: list,
     transition_types: list,
-    repeats: int = 3,
+    repeats: int = 5,
     model_path: str = "yolov8s-world.pt",
     conf_threshold: float = 0.25,
     output_dir: str = "outputs",
@@ -213,13 +214,27 @@ def main():
     config = load_config()
 
     sequences = [
-        "E:\\Dataset\\MOT17\\train\\MOT17-02-FRCNN",
-        "E:\\Dataset\\MOT17\\train\\MOT17-04-FRCNN",
-        "E:\\Dataset\\MOT17\\train\\MOT17-05-FRCNN",
-        "E:\\Dataset\\MOT17\\train\\MOT17-09-FRCNN",
-        "E:\\Dataset\\MOT17\\train\\MOT17-10-FRCNN",
-        "E:\\Dataset\\MOT17\\train\\MOT17-11-FRCNN",
-        "E:\\Dataset\\MOT17\\train\\MOT17-13-FRCNN",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-02-FRCNN",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-02-SDP",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-02-DPM",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-04-FRCNN",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-04-SDP",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-04-DPM",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-05-FRCNN",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-05-SDP",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-05-DPM",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-09-FRCNN",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-09-SDP",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-09-DPM",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-10-FRCNN",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-10-SDP",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-10-DPM",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-11-FRCNN",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-11-SDP",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-11-DPM",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-13-FRCNN",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-13-SDP",
+        "/home/wrf/Dara/datasets/MOT17/train/MOT17-13-DPM",
     ]
 
     initial_vocab = ["person", "car", "bicycle", "motorcycle", "bus", "truck"]
@@ -240,7 +255,7 @@ def main():
             model_path=config["model"]["path"],
             conf_threshold=config["model"]["conf_threshold"],
             output_dir="outputs",
-            visualize=True,
+            visualize=False,
         )
         all_results.append(results)
 
